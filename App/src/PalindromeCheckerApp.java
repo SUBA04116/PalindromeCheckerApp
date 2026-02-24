@@ -1,38 +1,39 @@
 /**
- MAIN CLASS UseCaseiPalindromeApp
- Use Case 1: Application Entry & Welcome Message
- Description:
- This class represents the entry point of the * Palindrome Checker Management System.
- At this stage, the application:
- Starts execution from the main() method
- * - Displays a welcome message
- Shows application version
- No palindrome logic is implemented yet.
- The goal is to establish a clear startup flow.
- @author Subashree
- @version 1.0
- */
-import java .util.Scanner;
+MAIN CLASS UseCase Palindrome CheckerApp
+Use Case 3: Reverse String Based Palindrome Check
+Description:
+This class checks whether a string is a palindrome
+        by reversing the string and comparing it with
+        the original value.
+At this stage, the application:
+Iterates the string in reverse order
+* Builds a reversed version
+Compares original and reversed strings
+* Displays the validation result
+This introduces transformation-based validation.
+ * @author Subashree
+ * version 3.6
+public class UseCase3PalindromeCheckerApp {
+}
+/**
+ * Application entry point for UC3.
+ @param args Command-Line arguments.
+ public static void main(String[] args)import java .util.Scanner;
 public class PalindromeCheckerApp {
     /**
-     Application entry point.
-     This is the first method executed by the JVM
-     when the program starts.
-     @param args Command-Line arguments
+     * Application entry point for UC3.
      */
-    public static void main(String[] args)
-    {
-        Scanner sc = new Scanner (System.in);
-        System.out.println("Input Text:");
-        String input = sc.next();
-        boolean ispalindrome=true;
-        int n = input.length();
-        for(int i=0;i<n/2;i++){
-            if(input.charAt(i)!=input.charAt(n-1-i)){
-                ispalindrome=false;
-                break;
-            }
+    public static void main(String[] args) {
+        String input = "madam"; // Example input string
+        String reversedInput = "";
+
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversedInput += input.charAt(i);
         }
-        System.out.println("is it a palindrome?"+ispalindrome);
+
+        if (input.equals(reversedInput)) {
+            System.out.println(input + " is a palindrome.");
+        } else {
+            System.out.println(input + " is not a palindrome.");
+        }
     }
-}
