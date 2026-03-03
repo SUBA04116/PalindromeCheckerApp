@@ -1,45 +1,52 @@
-/**
- MAIN CLASS UseCase4PalindromeCheckerApp
- Use Case 4: Character Array Based Validation
- * Description:
- This class validates a palindrome by converting
- the string into a character array and comparing
- *characters using the two-pointer technique.
- At this stage, the application:
- Converts string to char array
- Uses start and end pointers
- Compares characters efficiently
- Displays the result
- *This reduces extra memory usage.
- @author Subashree
- @version 4.0**/
+/**MAIN CLASS UsaGamesPalindrome CheckerAра
+Use Case S: Stack Based Palindrace Checker
+Description:
+This class validates a palindrome using a Stack
+        data structure which follows the LIFO principle.
+At this stuge, the application:
+Pushes characters into a stack
+Pops them in reverse ander
+Compares with onlyinat sequence
+Displays the result
+This maps stack benaviar to neversal logie.
+ author Subashree
+Mercaton 5.0
+public class UseCase PalindromeCheckerApp (
+        Application entry point for CS
+poram args Command-line argoments*/
+
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         // Declare and initialize the input string.
-        String input = "radar";
-        // Convert the string into a character array.
-        char[] chars = input.toCharArray();
-        // Initialize pointer at the beginning.
-        int start = 0;
-        // Initialize pointer at the end.
-        int end = chars.length - 1;
+        String input = "noon";
+
+        // Create a Stack to store characters.
+        Stack<Character> stack = new Stack<>();
+
+        // Push each character of the string into the stack.
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
         // Assume palindrome initially.
         boolean isPalindrome = true;
-        // Continue comparison until pointers cross.
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+
+        // Iterate again through original string.
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
+        // Print result
         if (isPalindrome) {
-            System.out.println("\"" + input + "\" is a palindrome.");
+            System.out.println(input + " is a palindrome.");
         } else {
-            System.out.println("\"" + input + "\" is not a palindrome.");
+            System.out.println(input + " is not a palindrome.");
         }
     }
 }
+
