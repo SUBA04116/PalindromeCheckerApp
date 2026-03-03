@@ -1,52 +1,77 @@
-/**MAIN CLASS UsaGamesPalindrome CheckerAра
-Use Case S: Stack Based Palindrace Checker
-Description:
-This class validates a palindrome using a Stack
-        data structure which follows the LIFO principle.
-At this stuge, the application:
-Pushes characters into a stack
-Pops them in reverse ander
-Compares with onlyinat sequence
-Displays the result
-This maps stack benaviar to neversal logie.
- author Subashree
-Mercaton 5.0
-public class UseCase PalindromeCheckerApp (
-        Application entry point for CS
-poram args Command-line argoments*/
+/**
+ * ============================================================
+ * MAIN CLASS - UseCase7PalindromeCheckerApp
+ * ============================================================
+ *
+ * Use Case 7: Deque Based Optimized Palindrome Checker
+ *
+ * Description:
+ * This class validates a palindrome using a Deque
+ * (Double Ended Queue).
+ *
+ * Characters are inserted into the deque and then
+ * compared by removing elements from both ends:
+ *
+ * - removeFirst()
+ * - removeLast()
+ *
+ * This avoids reversing the string and provides an
+ * efficient front-to-back comparison approach.
+ *
+ * This use case demonstrates optimal bidirectional
+ * traversal using Deque.
+ *
+ * @author Subashree
+ * @version 7.0
+ */
 
-import java.util.Stack;
+// Import required classes
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 public class PalindromeCheckerApp {
+
+    /**
+     * Application entry point for UC7.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
-        // Declare and initialize the input string.
-        String input = "noon";
 
-        // Create a Stack to store characters.
-        Stack<Character> stack = new Stack<>();
+        // Define the input string
+        String input = "refer";
 
-        // Push each character of the string into the stack.
+        // Create a Deque to store characters
+        Deque<Character> deque = new ArrayDeque<>();
+
+        // Add each character to the deque
         for (char c : input.toCharArray()) {
-            stack.push(c);
+            deque.addLast(c);  // Insert at the rear
         }
 
-        // Assume palindrome initially.
+        // Flag to track palindrome result
         boolean isPalindrome = true;
 
-        // Iterate again through original string.
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        // Continue comparison while more than one element exists
+        while (deque.size() > 1) {
+
+            // Remove from front
+            char first = deque.removeFirst();
+
+            // Remove from rear
+            char last = deque.removeLast();
+
+            // Compare characters
+            if (first != last) {
                 isPalindrome = false;
-                break;
+                break;  // Stop immediately if mismatch found
             }
         }
 
-        // Print result
-        if (isPalindrome) {
-            System.out.println(input + " is a palindrome.");
-        } else {
-            System.out.println(input + " is not a palindrome.");
-        }
+        // Display input
+        System.out.println("Input : " + input);
+
+        // Display result
+        System.out.println("Is Palindrome?: " + isPalindrome);
     }
 }
-
