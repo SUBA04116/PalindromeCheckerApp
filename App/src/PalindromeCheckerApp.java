@@ -1,75 +1,78 @@
 /**
- * ============================================================
- * MAIN CLASS - UseCase7PalindromeCheckerApp
- * ============================================================
+ * MAIN CLASS: UseCase6PalindromeCheckerApp
  *
- * Use Case 7: Deque Based Optimized Palindrome Checker
+ * Use Case 6: Queue Stack Fairness Check
  *
  * Description:
- * This class validates a palindrome using a Deque
- * (Double Ended Queue).
+ * This class demonstrates palindrome validation using
+ * two different data structures:
+ * 1. Queue (FIFO - First In First Out)
+ * 2. Stack (LIFO - Last In First Out)
  *
- * Characters are inserted into the deque and then
- * compared by removing elements from both ends:
+ * Characters are inserted into both structures and then
+ * compared by removing from the front of the queue and
+ * the top of the stack.
  *
- * - removeFirst()
- * - removeLast()
+ * If all characters match, the input string is confirmed
+ * as a palindrome.
  *
- * This avoids reversing the string and provides an
- * efficient front-to-back comparison approach.
- *
- * This use case demonstrates optimal bidirectional
- * traversal using Deque.
+ * This use case helps understand how FIFO and LIFO
+ * behaviors can be combined for symmetric comparison.
  *
  * @author Subashree
- * @version 7.0
+ * @version 6.0
  */
 
 // Import required classes
-import java.util.Deque;
-import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC7.
+     * Application entry point for UC6.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Define the input string
-        String input = "refer";
+        // Define the input string to validate
+        String input = "civic";
 
-        // Create a Deque to store characters
-        Deque<Character> deque = new ArrayDeque<>();
+        // Create a Queue to store characters in FIFO order
+        Queue<Character> queue = new LinkedList<>();
 
-        // Add each character to the deque
+        // Create a Stack to store characters in LIFO order
+        Stack<Character> stack = new Stack<>();
+
+        // Insert each character into both queue and stack
         for (char c : input.toCharArray()) {
-            deque.addLast(c);  // Insert at the rear
+            queue.add(c);   // Adds character to the end of queue
+            stack.push(c);  // Pushes character onto top of stack
         }
 
-        // Flag to track palindrome result
+        // Flag to track palindrome status
         boolean isPalindrome = true;
 
-        // Continue comparison while more than one element exists
-        while (deque.size() > 1) {
+        // Compare characters until the queue becomes empty
+        while (!queue.isEmpty()) {
 
-            // Remove from front
-            char first = deque.removeFirst();
+            // Remove character from front of queue (FIFO)
+            char fromQueue = queue.remove();
 
-            // Remove from rear
-            char last = deque.removeLast();
+            // Remove character from top of stack (LIFO)
+            char fromStack = stack.pop();
 
             // Compare characters
-            if (first != last) {
+            if (fromQueue != fromStack) {
                 isPalindrome = false;
-                break;  // Stop immediately if mismatch found
+                break;  // Exit loop immediately if mismatch found
             }
         }
 
         // Display input
-        System.out.println("Input : " + input);
+        System.out.println("Input: " + input);
 
         // Display result
         System.out.println("Is Palindrome?: " + isPalindrome);
