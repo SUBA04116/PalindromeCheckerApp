@@ -22,7 +22,7 @@
  * @version 10.0
  */
 
-public class PalindromeCheckerApp {
+class PalindromeCheckerApp {
 
     /**
      * Application entry point for UC10.
